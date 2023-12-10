@@ -1,5 +1,12 @@
 {
-    "name": "Player",
-    "level": 1,
-    "score": 0
+    "kambar": {
+        "username": "kambar",
+        "level": 4,
+        "score": 30
+    },
+    "user": {
+        "username": "user",
+        "level": 6,
+        "score": 45
+    }
 }
