@@ -8,5 +8,10 @@
         "username": "user",
         "level": 6,
         "score": 45
+    },
+    "km": {
+        "username": "km",
+        "level": 7,
+        "score": 60
     }
 }

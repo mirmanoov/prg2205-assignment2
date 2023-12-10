@@ -6,12 +6,14 @@ from game_logic.scoring import update_score
 
 
 import json
-
+# 5. Returning functions
 def get_scoring_function(user_level):
+    # 9. Lambdas and 4. Passing functions as arguments
     return apply_bonus(update_score, bonus=5) if user_level > 5 else update_score
 
 def start_game_with_settings(user_data):
     user_level = user_data['level']
+    # 4. Passing functions as arguments
     question_generator = question_type_selector()
     scoring_function = get_scoring_function(user_level)
     start_game(question_generator, scoring_function, user_data, user_level)  
@@ -20,11 +22,13 @@ def get_user_data(username):
     try:
         with open('user_data.json', 'r') as f:
             data = json.load(f)
+            # 10. List Comprehensions (indirect, through json.load)
             return data.get(username)  # Retrieve the user data by username key
     except FileNotFoundError:
         return None
 
 def initialize_user_data(username):
+    # 1. Separating functions and data
     return {'username': username, 'level': 1, 'score': 0}
 
 def main_menu_loop(user_data):
@@ -35,6 +39,7 @@ def main_menu_loop(user_data):
         choice = input("Enter your choice: ")
 
         if choice == '1':
+            # 4. Passing functions as arguments
             start_game_with_settings(user_data)
             break
         elif choice == '2':
@@ -53,10 +58,12 @@ def main():
         if input("Would you like to continue your last game? (yes/no): ").lower() != 'yes':
             user_data = initialize_user_data(username)
             print("Starting a new game session.")
+        # 4. Passing functions as arguments
         start_game_with_settings(user_data) 
     else:
         print("No existing game found. Starting a new game for you.")
         user_data = initialize_user_data(username)
+        # 2. Assigning a function to a variable
         main_menu_loop(user_data)
 
     save_user_data(user_data)
