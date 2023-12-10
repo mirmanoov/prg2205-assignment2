@@ -1,7 +1,8 @@
 # Importing necessary modules
 from game_logic.game_core import start_game, end_game
 from data.user_data import load_user_data, save_user_data
-from utils.higher_order_funcs import question_type_selector
+from utils.higher_order_funcs import question_type_selector, apply_bonus
+from game_logic.scoring import update_score
 
 def main():
     user_data = load_user_data()
@@ -16,8 +17,15 @@ def main():
 
         if choice == '1':
             user_level = user_data['level']  # Extract the user's level
-            question_type = question_type_selector(user_level)()  # Pass the level to the function and call the returned lambda
-            start_game(question_type, user_data)
+
+            # Get the question-generating function
+            question_generator = question_type_selector()
+
+            # Assigning a scoring function to a variable, with a potential bonus
+            scoring_function = apply_bonus(update_score, bonus=5) if user_level > 5 else update_score
+
+            # Passing functions as arguments
+            start_game(question_generator, scoring_function, user_data)
         elif choice == '2':
             print("Exiting the game. Goodbye!")
             break
