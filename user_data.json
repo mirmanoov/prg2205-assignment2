@@ -13,5 +13,10 @@
         "username": "km",
         "level": 7,
         "score": 60
+    },
+    "kamb": {
+        "username": "kamb",
+        "level": 5,
+        "score": 30
     }
 }
