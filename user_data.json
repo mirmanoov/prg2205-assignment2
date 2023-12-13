@@ -1,22 +1,17 @@
 {
-    "kambar": {
-        "username": "kambar",
-        "level": 6,
-        "score": 50
-    },
-    "user": {
-        "username": "user",
-        "level": 6,
-        "score": 45
-    },
-    "km": {
-        "username": "km",
-        "level": 7,
-        "score": 60
-    },
-    "kamb": {
-        "username": "kamb",
-        "level": 5,
-        "score": 30
-    }
+  "user": {
+    "username": "user",
+    "level": 6,
+    "score": 45
+  },
+  "kambar": {
+    "username": "kambar",
+    "level": 13,
+    "score": 120
+  },
+  "user2": {
+    "username": "user2",
+    "level": 1,
+    "score": -5
+  }
 }

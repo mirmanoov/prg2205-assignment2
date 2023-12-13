@@ -32,21 +32,23 @@ def initialize_user_data(username):
     return {'username': username, 'level': 1, 'score': 0}
 
 def main_menu_loop(user_data):
-    while True:
-        print("\nMain Menu:")
-        print("1. Start Game")
-        print("2. Exit")
-        choice = input("Enter your choice: ")
+    options = {
+        # press 1 to start game
+        '1': start_game_with_settings,
+        # press 2 to exit, return false to break loop
+        '2': lambda _: print("Exiting the game. Goodbye!") and False,
+        # if not 1 or 2, show error message, return true
+        'default': lambda _: print("Invalid choice. Please try again.") and True
+    }
 
-        if choice == '1':
-            # 4. Passing functions as arguments
-            start_game_with_settings(user_data)
-            break
-        elif choice == '2':
-            print("Exiting the game. Goodbye!")
-            break
-        else:
-            print("Invalid choice. Please try again.")
+    print("\nMain Menu:")
+    print("1. Start Game")
+    print("2. Exit")
+    choice = input("Enter your choice: ")
+
+    # if invalid input, print error message, then continue loop
+    if options.get(choice, options['default'])(user_data):
+        main_menu_loop(user_data)
 
 def main():
     print("Welcome to the Educational Math Game!")
